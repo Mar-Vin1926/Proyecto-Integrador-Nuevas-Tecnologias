@@ -14,17 +14,17 @@ st.markdown(f"""
     <style>
         .main-header {{
             font-size: 3rem;
-            color: #2E86C1; /* Un azul más vibrante */
+            color: #2E86C1;
             text-align: center;
             margin-bottom: 1.5rem;
-            font-family: 'Arial Black', sans-serif; /* Ejemplo de fuente */
+            font-family: 'Arial Black', sans-serif;
         }}
         .sub-header {{
             font-size: 2rem;
-            color: #5DADE2; /* Un tono de azul más claro */
+            color: #5DADE2;
             text-align: center;
             margin-bottom: 2.5rem;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Otra fuente */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             font-style: italic;
         }}
         .section-title {{
@@ -36,7 +36,7 @@ st.markdown(f"""
             padding-bottom: 0.5rem;
         }}
         .student-info-container {{
-            background-color: #EBF5FB; /* Fondo suave */
+            background-color: #EBF5FB;
             border-radius: 15px;
             padding: 25px;
             box-shadow: 0 6px 8px rgba(0, 0, 0, 0.08);
@@ -71,27 +71,22 @@ st.markdown(f"""
             transition: background-color 0.3s ease;
         }}
         .stButton > button:hover {{
-            background-color: #1C395A; /* Un tono más oscuro al pasar el ratón */
-        }}
-        .logo-cesde {{
-            width: 250px; /* Ajusta el ancho según sea necesario */
-            margin-bottom: 20px; /* Espacio debajo del logo */
-        }}
-        .logo-python {{
-            width: 100px; /* Ajusta el ancho según sea necesario */
-            margin-left: 20px; /* Espacio a la izquierda del logo */
-            margin-bottom: 20px;
+            background-color: #1C395A;
         }}
         .logos-container {{
             display: flex;
-            justify-content: flex-start; /* Alinea los logos a la izquierda */
-            align-items: center; /* Centra los logos verticalmente */
+            justify-content: center; /* Centra los logos horizontalmente */
+            align-items: center; /* Alinea los logos verticalmente */
             gap: 2em; /* Espacio entre los logos */
             margin-bottom: 2em;
         }}
         .logo {{
             display: inline-block;
             width: auto;
+            height: auto;
+        }}
+        .logo-cesde {{
+            width: 300px; /* Ajusta el ancho del logo de CESDE */
             height: auto;
         }}
     </style>
@@ -113,39 +108,45 @@ def show_svg(filepath, width=None):
 # --- Sección de logos ---
 st.markdown('<div class="logos-container">', unsafe_allow_html=True)
 
-# Mostrar el logo de CESDE (SVG)
-show_svg("assets/logo-Cesde-2023.svg", width=250)
-
-# Mostrar el logo de Python (PNG)
-try:
-    st.image("assets/logo-python.png", width=100)
-except FileNotFoundError:
-    st.error("No se encontró el archivo: assets/logo-python.png")
+# Renderiza el logo de CESDE usando la función show_svg
+show_svg("assets/logo-Cesde-2023.svg", width=120)
 
 st.markdown('</div>', unsafe_allow_html=True)
 
-# --- Encabezados ---
-st.markdown('<h1 class="main-header">¡Análisis de las causas de suicidio en Antioquia!</h1>', unsafe_allow_html=True)
-st.markdown('<h2 class="sub-header">Explorando las Nuevas Tecnologías con un DataSet</h2>', unsafe_allow_html=True)
-
-# --- Sección de información del estudiante con diseño mejorado ---
-st.markdown('<h2 class="section-title">Desarrolladores</h2>', unsafe_allow_html=True)
-st.markdown(f"""
-    <div class="student-info-container">
-        <div style="display: flex; align-items: center;">
-            <div style="margin-right: 30px;">
-                <img src="https://avatars.githubusercontent.com/u/12345679?v=4" alt="Foto de perfil" style="border-radius: 50%; width: 150px; height: 150px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
-            </div>
-            <div>
-                <p class="student-name">Kevin Olivella, Marvin García y Paola Murillo</p>
-                <p class="student-detail">Programa: <span style="font-weight: bold;">Desarrollo de Software: Nuevas Tecnologías</span></p>
-                <p class="student-detail">Semestre: <span style="font-weight: bold;">2025-1</span></p>
-                <p class="student-detail">Repositorio: <a href="https://github.com/Kevolive/proyecto-integrador.git" target="_blank" class="github-link">GitHub</a></p>
-                <p class="student-detail">¡Apasionados por la creación de soluciones innovadoras con tecnología de punta!</p>
-            </div>
-        </div>
-    </div>
+# --- CSS para centrar y ajustar el tamaño del logo ---
+st.markdown("""
+<style>
+.logos-container {
+    display: flex;
+    justify-content: center; /* Centra el logo horizontalmente */
+    align-items: center; /* Centra el logo verticalmente */
+    margin-bottom: 2em;
+}
+.logo {
+    width: 120px; /* Ajusta el tamaño del logo de CESDE */
+    height: auto;
+    border-radius: 100px; /* Bordes redondeados */
+}
+</style>
 """, unsafe_allow_html=True)
+
+col1, col2 = st.columns([1, 3])  # Ajusta las proporciones de las columnas
+
+with col1:
+    # Mostrar la imagen con bordes redondeados y sombra
+    st.image("assets/foto-perfil.jpg", width=150, caption="",)
+
+with col2:
+    # Mostrar la información del estudiante
+    st.markdown("""
+        <div>
+            <p class="student-name">Kevin Olivella, Marvin García y Paola Murillo</p>
+            <p class="student-detail">Programa: <span style="font-weight: bold;">Desarrollo de Software: Nuevas Tecnologías</span></p>
+            <p class="student-detail">Semestre: <span style="font-weight: bold;">2025-1</span></p>
+            <p class="student-detail">Repositorio: <a href="https://github.com/Kevolive/proyecto-integrador.git" target="_blank" class="github-link">GitHub</a></p>
+            <p class="student-detail">¡Apasionados por la creación de soluciones innovadoras con tecnología de punta!</p>
+        </div>
+    """, unsafe_allow_html=True)
 
 # --- Introducción interactiva (ejemplo) ---
 st.markdown('<h2 class="section-title">¿Qué te interesa explorar hoy?</h2>', unsafe_allow_html=True)
